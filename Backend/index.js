@@ -15,7 +15,7 @@ app.use(cors());
 //db connection
 connectDB();
 
-app.use('/users', userRouter);
+app.use('/api/users', userRouter);
 
 
 app.get('/', (req, res) => {
