@@ -1,0 +1,31 @@
+services:
+  frontend:
+    build: ./Frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - mern
+  backend:
+    build: ./Backend
+    ports:
+      - "4000:4000"
+    networks:
+      - mern
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - mern
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+    driver: local  # <-- This must be indented with 4 spaces!
+
+networks:
+  mern:
+    driver: bridge
